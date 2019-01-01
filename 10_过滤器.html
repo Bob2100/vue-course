@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='app'></div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var App = {
+        //过滤器调用方式{{data | filterName(arg1)}}
+        template: `
+            <div>
+                <input v-model="text"/>
+                {{text | reverse('反转后：')}}
+            </div>
+        `,
+        data: function(){
+            return {
+                text: ''
+            }
+        },
+        filters: {
+            //data:调用方式中|符号前面的值，比如这里的text，arg1为调用函数真正传递的第一个参数，如这里的'反转后：'
+            reverse: function(data, arg1){
+                return arg1 + data.split('').reverse().join('');
+            }
+        }
+    };
+    new Vue({
+        el: '#app',
+        components: {
+            app: App
+        },
+        template: '<app/>'
+    });
+</script>
+</body>
+</html>
