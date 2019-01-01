@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='app'></div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    var MyHeader = {
+        template: `<div>
+            头部
+        </div>`
+    }
+
+    var MyBody = Vue.extend({
+        template: `<div>
+            中部
+        </div>`
+    });
+
+    var MyFooter = {
+        template: `<div>
+            <button @click="showNum(123)" style="cursor: pointer">{{msg}}</button>
+        </div>` ,
+        data: function(){
+            return {
+                msg: '底部'
+            }
+        },
+        methods: {
+            showNum: function(num){
+                alert(num);
+            }
+        }
+    }
+    var App = {
+        components: {
+            //my-header ==> <my-header></my-header>名字对应
+            'my-header': MyHeader,
+            'my-body': MyBody,
+            'my-footer': MyFooter
+        },
+        template: `
+            <div>
+                <my-header></my-header>
+                <my-body></my-body>
+                <my-footer></my-footer>
+            </div>
+        `
+    }
+    new Vue({
+        el: '#app',
+        //app ==> <app/> 名字对应
+        components: {
+            app: App
+        },
+        template: '<app/>'
+    });
+</script>
+</body>
+</html>

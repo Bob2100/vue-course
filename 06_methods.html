@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='app'></div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        template: `<div>
+            <button @click="change">{{btnValue}}</button>
+            <h1 v-show="isShow">1</h1>
+            <h1 v-show="isShow">2</h1>
+            <h1 v-show="isShow">3</h1>
+            <h1 v-show="isShow">4</h1>
+        </div>`,
+        data: function () {
+            return {
+                isShow: true,
+                btnValue: '隐藏'
+            }
+        },
+        methods: {
+            change: function(e){
+                console.dir(e);
+                console.dir(this);
+                this.isShow = !this.isShow;
+                this.isShow == true ? this.btnValue = '隐藏' : this.btnValue = '显示';
+            }
+        }
+        //this: methods中方法的this指的是Vue对象，data返回的对象的属性会成为Vue的属性，methods的函数会成为Vue的函数
+
+    });
+</script>
+</body>
+</html>

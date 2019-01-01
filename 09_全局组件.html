@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='app'></div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+
+    //声明全局组件my-btn，减少冗余代码
+    Vue.component('my-btn', {
+        template: `
+            <div>
+                <button style="background: red">提交</button>
+            </div>
+        `
+    });
+
+    var MyHeader = {
+        //这里不需要声明my-btn组件，my-btn已经被声明为全局组件
+        template: `<div>
+            头部<br/>
+            <my-btn></my-btn>
+        </div>`
+    }
+    var MyFooter = {
+        //这里不需要声明my-btn组件，my-btn已经被声明为全局组件
+        template: `<div>
+            尾部<br/>
+            <my-btn></my-btn>
+        </div>`
+    }
+    var App = {
+        components: {
+            'my-header': MyHeader,
+            'my-footer': MyFooter
+            //这里不需要声明my-btn组件，my-btn已经被声明为全局组件
+        },
+        template: `
+            <div>
+                <my-header></my-header>
+                <my-footer></my-footer>
+                <my-btn></my-btn>
+            </div>
+        `
+    };
+    new Vue({
+        el: '#app',
+        components: {
+            app: App
+        },
+        template: '<app/>'
+    });
+</script>
+</body>
+</html>

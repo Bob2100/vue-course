@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .red{
+            background: red;
+        }
+
+        .green{
+            background: green;
+        }
+
+        .blue{
+            background: blue;
+        }
+    </style>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                stus: [{name: 'bob', class: 'red'},
+                        {name: 'rose', class: 'green'},
+                        {name: 'jack', class:'blue'}],
+                stus2: {
+                    name: 'bob',
+                    age: 18,
+                    job: 'js'
+                }
+            }
+        },
+        //item in array，item为array中每一项
+        //(val, key, index) in obj, val为value，key为key, index为索引
+        template: `<div>
+            <ul>
+                <li v-for="item in stus" v-bind:class="item.class">{{item.name}}</li>
+            </ul>
+            <hr/>
+            <ul>
+                <li v-for="(val, key, index) in stus2">
+                    val:{{val}}, key: {{key}}, index: {{index}}
+                </li>
+            </ul>
+        </div>`
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='app'>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                name: 'bob',
+                username: 'uname',
+                changeName: function(){
+                    console.log(name);
+                }
+            }
+        },
+        template: `<div>
+            <input v-bind:value="name" v-bind:name="username" :my-pro="name"/><br/>
+            <button v-on:click="name = 'ff'">改变名字</button><br/>
+            <button @click="name = '@'">改变名字简写</button><br/>
+            <button v-show="name == 'show'">显示btn</button>
+        </div>`
+        //v-bind的简写形式 ：
+        //单向绑定：vue ==>dom
+
+    });
+</script>
+</body>
+</html>
