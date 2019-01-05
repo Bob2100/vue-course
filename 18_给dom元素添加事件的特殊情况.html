@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id='app'></div>
+<script src="vue/dist/vue.js"></script>
+<script>
+    var App = {
+        template: `
+            <div>
+                <input type="text" v-if="isShow" ref="name"/>
+            </div>
+        `,
+        data: function(){
+            return {
+                isShow: false
+            }
+        },
+        mounted: function(){
+            this.isShow = true;
+            this.isShow = false;
+            this.isShow = true;
+            //最终代码执行完毕以后,vue才会根据实际的值,进行DOM的操作，并不是反复的创建销毁
+
+            //input元素获取焦点
+            //this.$refs.name.focus();//没用，这段代码执行了，vue还没有把input元素插入页面呢
+
+            //vue真正把DOM渲染到页面后执行
+            this.$nextTick(function(){
+                this.$refs.name.focus();
+            });
+
+
+        }
+    };
+    var vm = new Vue({
+        el: '#app',
+        components: {app: App},
+        template: `<app/>`
+    });
+</script>
+</body>
+</html>
