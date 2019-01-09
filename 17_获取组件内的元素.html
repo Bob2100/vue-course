@@ -8,55 +8,55 @@
 <div id='app'></div>
 <script src="vue/dist/vue.js"></script>
 <script>
-    var GrandSon = {
-        template: `
+  var GrandSon = {
+    template: `
             <div>
                 <span>我是GrandSon组件</span>
             </div>
         `
-    };
-    var Son = {
-        components: {
-            'grand-son': GrandSon
-        },
-        template: `
+  };
+  var Son = {
+    components: {
+      'grand-son': GrandSon
+    },
+    template: `
             <div>
                 <span>我是Son组件</span>
                 <grand-son ref="gsn"></grand-son>
             </div>
         `
-    };
-    var App = {
-        components: {
-            son: Son
-        },
-        // 在组件的DOM部分,任意的标签中写上ref="some"，可以通过组件对象的this.$refs.some获取到元素
-        template: `
+  };
+  var App = {
+    components: {
+      son: Son
+    },
+    // 在组件的DOM部分,任意的标签中写上ref="some"，可以通过组件对象的this.$refs.some获取到元素
+    template: `
             <div>
                 <son ref="sn"></son>
                 <div ref="name">张三</div>
             </div>
         `,
 
-        //组件装载完成后通过this.$refs获取元素
-        // $parent : 获取当前组件对象的父组件
-        // $children: 获取子组件
-        // $root : 获取new Vue的实例  vm
-        // $el: 组件对象的DOM元素
-        mounted: function(){
-            console.log(this.$refs);
-            console.log(this.$refs.sn.$parent);
-            console.log(this.$refs.sn.$children);
-            console.log(this.$refs.sn.$root);
-            console.log(this.$refs.sn.$el);
-            console.log(this.$refs.name);
-        }
-    };
-    var vm = new Vue({
-        el: '#app',
-        components: {app: App},
-        template: `<app/>`
-    });
+    //组件装载完成后通过this.$refs获取元素
+    // $parent : 获取当前组件对象的父组件
+    // $children: 获取子组件
+    // $root : 获取new Vue的实例  vm
+    // $el: 组件对象的DOM元素
+    mounted: function () {
+      console.log(this.$refs);
+      console.log(this.$refs.sn.$parent);
+      console.log(this.$refs.sn.$children);
+      console.log(this.$refs.sn.$root);
+      console.log(this.$refs.sn.$el);
+      console.log(this.$refs.name);
+    }
+  };
+  var vm = new Vue({
+    el: '#app',
+    components: {app: App},
+    template: `<app/>`
+  });
 </script>
 </body>
 </html>
