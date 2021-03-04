@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">
+      <ol>
+        <!-- 创建一个 todo-item 组件的实例 -->
+        <todo-item></todo-item>
+      </ol>
+    </div>
+
+    <script src="./vue/vue.js"></script>
+    <script>
+      // 定义名为 todo-item 的新组件
+      Vue.component("todo-item", {
+        template: "<li>这是个待办项</li>",
+      });
+
+      var app = new Vue({
+        el: "#app",
+      });
+    </script>
+  </body>
+</html>
