@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>Using mustaches: {{ rawHtml }}</p>
+      <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    </div>
+
+    <script src="vue/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          rawHtml: `<span style="color:red">This should be red</span>`,
+        },
+      });
+    </script>
+  </body>
+</html>
