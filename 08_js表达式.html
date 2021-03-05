@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">
+      {{ number + 1 }} {{ ok ? 'YES' : 'NO' }}
+      {{message.split('').reverse().join('') }}
+
+      <div v-bind:id="'list-' + id"></div>
+      <!-- 每个绑定都只能包含单个表达式，所以下面的例子都不会生效。 -->
+      <!-- 这是语句，不是表达式 -->
+      {{ var a = 1 }}
+
+      <!-- 流控制也不会生效，请使用三元表达式 -->
+      {{ if (ok) { return message } }}
+    </div>
+    <script src="vue/vue.js"></script>
+    <script>
+      new Vue({
+        el: "#app",
+        data: {
+          id: "123",
+          message: "hello",
+          number: 2,
+        },
+      });
+    </script>
+  </body>
+</html>
