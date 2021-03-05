@@ -10,7 +10,9 @@
         Ask a yes/no question:
         <input v-model="question" />
       </p>
-      <p>{{ answer }}</p>
+      <p>
+        <template>{{ answer }}</template>
+      </p>
     </div>
 
     <script src="vue/vue.js"></script>
