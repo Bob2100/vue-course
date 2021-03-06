@@ -8,7 +8,7 @@
     <div id="app">
       <div v-on:click="onDivClick">
         <!-- 阻止单击事件继续传播 -->
-        <a v-on:click.self="onAClick">点击</a>
+        <a v-on:click.once="onAClick">点击</a>
       </div>
     </div>
     <script src="vue/vue.js"></script>
