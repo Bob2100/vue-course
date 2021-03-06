@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">
+      <div v-on:click="onDivClick">
+        <!-- 阻止单击事件继续传播 -->
+        <a v-on:click.self="onAClick">点击</a>
+      </div>
+    </div>
+    <script src="vue/vue.js"></script>
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "hello",
+        },
+        methods: {
+          onAClick: function (e) {
+            console.log(e.target.tagName + " a");
+          },
+          onDivClick: function (e) {
+            console.log(e.target.tagName + " div");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
