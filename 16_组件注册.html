@@ -6,7 +6,9 @@
   </head>
   <body>
     <div id="app">
-      <component-a></component-a>
+      <component-a>
+        <component-b></component-b>
+      </component-a>
       <component-b></component-b>
       <component-c></component-c>
     </div>
@@ -16,7 +18,10 @@
       // 全局注册
       Vue.component("component-a", {
         template: `
-            <input type="text" value="a"/>
+            <div>
+                <input type="text" value="a"/>
+                <slot></slot>
+            </div>
         `,
       });
       Vue.component("component-b", {
