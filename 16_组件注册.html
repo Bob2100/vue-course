@@ -12,6 +12,11 @@
       <component-b></component-b>
       <component-c></component-c>
     </div>
+    <hr />
+    <div id="app2">
+      <component-aa> </component-aa>
+      <component-bb></component-bb>
+    </div>
 
     <script src="vue/vue.js"></script>
     <script>
@@ -36,6 +41,33 @@
       });
 
       new Vue({ el: "#app" });
+
+      //   局部注册
+      var ComponentA = {
+        template: `
+            <div>
+                <input type="text" value="aa"/>
+                <slot></slot>
+            </div>
+        `,
+      };
+      var ComponentB = {
+        template: `
+            <input type="text" value="bb"/>
+        `,
+      };
+      var ComponentC = {
+        template: `
+            <input type="text" value="cc"/>
+        `,
+      };
+      new Vue({
+        el: "#app2",
+        components: {
+          "component-aa": ComponentA,
+          "component-bb": ComponentB,
+        },
+      });
     </script>
   </body>
 </html>
