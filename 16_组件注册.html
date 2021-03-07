@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">
+      <component-a></component-a>
+      <component-b></component-b>
+      <component-c></component-c>
+    </div>
+
+    <script src="vue/vue.js"></script>
+    <script>
+      // 全局注册
+      Vue.component("component-a", {
+        template: `
+            <input type="text" value="a"/>
+        `,
+      });
+      Vue.component("component-b", {
+        template: `
+            <input type="text" value="b"/>
+        `,
+      });
+      Vue.component("component-c", {
+        template: `
+            <input type="text" value="c"/>
+        `,
+      });
+
+      new Vue({ el: "#app" });
+    </script>
+  </body>
+</html>
