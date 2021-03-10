@@ -12,6 +12,8 @@
       <blog-post
         v-bind:post-title="post.title + ' by ' + post.author.name"
       ></blog-post>
+      <blog-post v-bind:likes="42"></blog-post>
+      <blog-post v-bind:likes="post.likes"></blog-post>
     </div>
 
     <script src="vue/vue.js"></script>
@@ -20,8 +22,14 @@
         // 在 JavaScript 中是 camelCase 的
         props: {
           postTitle: String,
+          likes: Number,
         },
-        template: "<h3>{{ postTitle }}</h3>",
+        template: `
+          <div>
+            <h3>{{ postTitle }}</h3>
+            <p>{{likes}}</p>
+          </div>
+        `,
       });
 
       new Vue({
@@ -33,6 +41,7 @@
               name: "Bob",
               age: 18,
             },
+            likes: 50,
           },
         },
       });
