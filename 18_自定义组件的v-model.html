@@ -6,7 +6,7 @@
   </head>
   <body>
     <div id="app">
-      <base-checkbox v-model="lovingVue"></base-checkbox>
+      <base-checkbox v-model="lovingVue" v-on:change="onChange"></base-checkbox>
       {{lovingVue}}
     </div>
 
@@ -33,6 +33,11 @@
         el: "#app",
         data: {
           lovingVue: false,
+        },
+        methods: {
+          onChange(checked) {
+            console.log(checked);
+          },
         },
       });
     </script>
