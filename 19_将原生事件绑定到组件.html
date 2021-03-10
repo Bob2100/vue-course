@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <div id="app">
+      <base-input
+        label="name"
+        v-on:focus.native="onFocus"
+        v-on:input="input"
+      ></base-input>
+    </div>
+
+    <script src="vue/vue.js"></script>
+    <script>
+      Vue.component("base-input", {
+        props: {
+          label: String,
+          value: String,
+        },
+        // template: `
+        //   <label>
+        //     {{ label }}
+        //     <input
+        //       v-bind="$attrs"
+        //       v-bind:value="value"
+        //       v-on:input="$emit('input', $event.target.value)"
+        //     >
+        //   </label>
+        // `,
+        template: `
+          <input
+            v-bind="$attrs"
+            v-bind:value="value"
+            v-on:input="$emit('input', $event.target.value)"
+          >
+        `,
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          lovingVue: false,
+        },
+        methods: {
+          input(value) {
+            console.log(value);
+          },
+          onFocus(e) {
+            console.log(e);
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
