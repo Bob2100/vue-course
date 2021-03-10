@@ -8,6 +8,10 @@
     <div id="app">
       <!-- 在 HTML 中是 kebab-case 的 -->
       <blog-post post-title="hello world!"></blog-post>
+      <blog-post v-bind:post-title="post.title"></blog-post>
+      <blog-post
+        v-bind:post-title="post.title + ' by ' + post.author.name"
+      ></blog-post>
     </div>
 
     <script src="vue/vue.js"></script>
@@ -22,6 +26,15 @@
 
       new Vue({
         el: "#app",
+        data: {
+          post: {
+            title: "我的博客",
+            author: {
+              name: "Bob",
+              age: 18,
+            },
+          },
+        },
       });
     </script>
   </body>
