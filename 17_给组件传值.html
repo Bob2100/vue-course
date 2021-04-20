@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
-  </head>
-  <body>
-    <div id="app">
-      <!-- 在 HTML 中是 kebab-case 的 -->
-      <blog-post post-title="hello world!"></blog-post>
-      <blog-post v-bind:post-title="post.title"></blog-post>
-      <blog-post
-        v-bind:post-title="post.title + ' by ' + post.author.name"
-      ></blog-post>
-      <blog-post v-bind:likes="42"></blog-post>
-      <blog-post v-bind:likes="post.likes"></blog-post>
-    </div>
 
-    <script src="vue/vue.js"></script>
-    <script>
-      Vue.component("blog-post", {
-        // 在 JavaScript 中是 camelCase 的
-        props: {
-          postTitle: String,
-          likes: Number,
-          isPublished: Boolean,
-        },
-        template: `
-          <div>
-            <h3>{{ postTitle }}</h3>
-            <p>{{likes}}</p>
-          </div>
-        `,
-      });
+<head>
+  <meta charset="UTF-8" />
+  <title>Title</title>
+</head>
 
-      new Vue({
-        el: "#app",
-        data: {
-          post: {
-            title: "我的博客",
-            author: {
-              name: "Bob",
-              age: 18,
-            },
-            likes: 50,
+<body>
+  <div id="app">
+    <!-- 在 HTML 中是 kebab-case 的 -->
+    <blog-post post-title="hello world!"></blog-post>
+    <blog-post v-bind:post-title="post.title"></blog-post>
+    <blog-post
+      v-bind:post-title="post.title + ' by ' + post.author.name"></blog-post>
+    <blog-post v-bind:likes="42"></blog-post>
+    <blog-post v-bind:likes="post.likes"></blog-post>
+  </div>
+
+  <script src="vue/vue.js"></script>
+  <script>
+    Vue.component("blog-post", {
+      // 在 JavaScript 中是 camelCase 的
+      props: {
+        postTitle: String,
+        likes: Number,
+        isPublished: Boolean,
+      },
+      template: `
+        <div>
+          <h3>{{ postTitle }}</h3>
+          <p>{{likes}}</p>
+        </div>
+      `,
+    });
+
+    new Vue({
+      el: "#app",
+      data: {
+        post: {
+          title: "我的博客",
+          author: {
+            name: "Bob",
+            age: 18,
           },
+          likes: 50,
         },
-      });
-    </script>
-  </body>
+      },
+    });
+  </script>
+</body>
+
 </html>

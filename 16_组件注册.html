@@ -1,83 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
-  </head>
-  <body>
-    <div id="app">
-      <component-a>
-        <component-b></component-b>
-      </component-a>
-      <component-b></component-b>
-      <component-c></component-c>
-    </div>
-    <hr />
-    <div id="app2">
-      <component-aa></component-aa>
-      <component-bb></component-bb>
-      <component-cc></component-cc>
-    </div>
 
-    <script src="vue/vue.js"></script>
-    <script>
-      // 全局注册
-      Vue.component("component-a", {
-        template: `
+<head>
+  <meta charset="UTF-8" />
+  <title>Title</title>
+</head>
+
+<body>
+  <div id="app">
+    <component-a>
+      <component-b></component-b>
+    </component-a>
+    <component-b></component-b>
+    <component-c></component-c>
+  </div>
+  <hr />
+  <div id="app2">
+    <component-aa></component-aa>
+    <component-bb></component-bb>
+    <component-cc></component-cc>
+  </div>
+
+  <script src="vue/vue.js"></script>
+  <script>
+    // 全局注册
+    Vue.component("component-a", {
+      template: `
             <div>
                 <input type="text" value="a"/>
                 <slot></slot>
             </div>
         `,
-      });
-      Vue.component("component-b", {
-        template: `
+    });
+    Vue.component("component-b", {
+      template: `
             <input type="text" value="b"/>
         `,
-      });
-      Vue.component("component-c", {
-        template: `
+    });
+    Vue.component("component-c", {
+      template: `
             <input type="text" value="c"/>
         `,
-      });
+    });
 
-      new Vue({ el: "#app" });
+    new Vue({ el: "#app" });
 
-      function model() {
-        //   局部注册
-        var ComponentB = {
-          template: `
+    function model() {
+      //   局部注册
+      var ComponentB = {
+        template: `
             <input type="text" value="bb"/>
         `,
-        };
+      };
 
-        var ComponentA = {
-          template: `
+      var ComponentA = {
+        template: `
                 <div>
                     <input type="text" value="aa"/>
                     <component-bb></component-bb>
                 </div>
             `,
-          components: {
-            "component-bb": ComponentB,
-          },
-        };
+        components: {
+          "component-bb": ComponentB,
+        },
+      };
 
-        var ComponentC = {
-          template: `
+      var ComponentC = {
+        template: `
             <input type="text" value="cc"/>
         `,
-        };
-        new Vue({
-          el: "#app2",
-          components: {
-            "component-aa": ComponentA,
-            "component-bb": ComponentB,
-            "component-cc": ComponentC,
-          },
-        });
-      }
-      model();
-    </script>
-  </body>
+      };
+      new Vue({
+        el: "#app2",
+        components: {
+          "component-aa": ComponentA,
+          "component-bb": ComponentB,
+          "component-cc": ComponentC,
+        },
+      });
+    }
+    model();
+  </script>
+</body>
+
 </html>
