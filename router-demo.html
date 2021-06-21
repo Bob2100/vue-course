@@ -30,6 +30,11 @@
     const Bar = { template: '<div>bar</div>' }
     const User = {
       template: '<div>User {{ $route.params.id }}</div>',
+      watch: {
+        $route(to, from) {
+          console.log(to, from);
+        }
+      },
       created() {
         console.log('User created');
       },
@@ -37,13 +42,29 @@
         console.log('User destroyed');
       }
     }
+    const UserHome = {
+      template: '<div>User Home</div>',
+    }
+
     const Login = {
       template: `
         <div>
           <h1>Login</h1>  
-          <router-view></router-view>
+          <transition name="fade" mode="out-in">
+          <router-view :key="key"></router-view>
+          </transition>
         </div>
       `,
+      data() {
+        return {
+          key: 0
+        }
+      },
+      watch: {
+        $route() {
+          this.key++;
+        }
+      },
       created() {
         console.log('Login created');
       },
@@ -57,6 +78,10 @@
         path: '/login',
         component: Login,
         children: [
+          {
+            path: '',
+            component: UserHome
+          },
           {
             path: 'user/:id',
             component: User
