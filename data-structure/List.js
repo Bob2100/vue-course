@@ -18,6 +18,13 @@ List.prototype.remove = function (item) {
   this.data.splice(index, 1);
   return true;
 }
+List.prototype.insert = function (item, after) {
+  const index = this.findIndex(after);
+  if (index === -1) {
+    return false;
+  }
+  this.data.splice(index + 1, 0, item);
+}
 List.prototype.toString = function () {
   return this.data;
 }
