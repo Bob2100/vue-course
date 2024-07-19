@@ -7,79 +7,36 @@
 </head>
 
 <body>
-  <div id="app">
-    <component-a>
-      <component-b></component-b>
-    </component-a>
-    <component-b></component-b>
-    <component-c></component-c>
-  </div>
-  <hr />
-  <div id="app2">
-    <component-aa></component-aa>
-    <component-bb></component-bb>
-    <component-cc></component-cc>
+  <div id="components-demo">
+    <button-counter :title.sync="title"></button-counter>
   </div>
 
   <script src="vue/vue.js"></script>
   <script>
-    // 全局注册
-    Vue.component("component-a", {
+    Vue.component('button-counter', {
+      props: {
+        title: String
+      },
+      data: function () {
+        return { }
+      },
+      methods:{
+        onClick(){
+          this.$emit('update:title', 'world')
+        }
+      },
       template: `
-            <div>
-                <input type="text" value="a"/>
-                <slot></slot>
-            </div>
-        `,
-    });
-    Vue.component("component-b", {
-      template: `
-            <input type="text" value="b"/>
-        `,
-    });
-    Vue.component("component-c", {
-      template: `
-            <input type="text" value="c"/>
-        `,
-    });
-
-    new Vue({ el: "#app" });
-
-    function model() {
-      //   局部注册
-      var ComponentB = {
-        template: `
-            <input type="text" value="bb"/>
-        `,
-      };
-
-      var ComponentA = {
-        template: `
-                <div>
-                    <input type="text" value="aa"/>
-                    <component-bb></component-bb>
-                </div>
-            `,
-        components: {
-          "component-bb": ComponentB,
-        },
-      };
-
-      var ComponentC = {
-        template: `
-            <input type="text" value="cc"/>
-        `,
-      };
-      new Vue({
-        el: "#app2",
-        components: {
-          "component-aa": ComponentA,
-          "component-bb": ComponentB,
-          "component-cc": ComponentC,
-        },
-      });
-    }
-    model();
+        <div>
+          <h1 @click="onClick">{{title}}</h1>
+        </div>
+      `
+    })
+    new Vue({
+      el: '#components-demo',
+      data: {
+        title: 'hello'
+      },
+    })
   </script>
 </body>
 
